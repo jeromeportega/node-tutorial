@@ -54,9 +54,9 @@ userSchema.methods.generateAuthToken = async function() {
     const user = this;
     const token = jwt.sign({ _id: user._id.toString() }, 'thisisataskmanager');
 
-    user.tokens = user.tokens.concat[{
+    user.tokens = user.tokens.concat([{
         token,
-    }];
+    }]);
 
     await user.save();
 
