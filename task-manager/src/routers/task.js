@@ -17,17 +17,36 @@ router.post('/tasks', auth, async (req, res) => {
     }
 });
 
+// GET /tasks?completed=true
+// GET /tasks?limit=1&skip=2 --- Example of pagination using the populate method.
+// GET /tasks?sortBy=createdAt:asc
 router.get('/tasks', auth, async (req, res) => {
     const match = {};
+    const sort = {};
 
+    // Set up the match object
     if (req.query.completed) {
         match.completed = req.query.completed === 'true';
+    }
+
+    // Set up the sort object
+    if (req.query.sortBy) {
+        const parts = req.query.sortBy.split(':');
+
+        // Object key is populated by the first part of the url param.
+        // Ternary for second part of ternary decides ascending or descending of that param.
+        sort[parts[0]] = parts[1] === 'desc' ? -1 : 1;
     }
 
     try {
         await req.user.populate({
             path: 'tasks',
             match,
+            options: {
+                limit: parseInt(req.query.limit),
+                skip: parseInt(req.query.skip),
+                sort,
+            }
         }).execPopulate();
         res.send(req.user.tasks);
     } catch (e) {
