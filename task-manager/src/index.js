@@ -1,13 +1,10 @@
 const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
-
-// Bring in mongoose DB
 require('./db/mongoose');
-
-// Import Routes
 const userRouter = require('./routers/user');
 const taskRouter = require('./routers/task');
+
+const app = express();
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
