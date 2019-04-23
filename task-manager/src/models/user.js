@@ -75,7 +75,7 @@ userSchema.methods.toJSON = async function() {
 // Generates an auth token and attaches it to the user in the DB.
 userSchema.methods.generateAuthToken = async function() {
     const user = this;
-    const token = jwt.sign({ _id: user._id.toString() }, 'thisisataskmanager');
+    const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET);
 
     user.tokens = user.tokens.concat([{
         token,
