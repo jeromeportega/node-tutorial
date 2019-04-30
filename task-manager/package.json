@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "env-cmd ./config/dev.env nodemon src/index.js",
-    "start_db": "~/mongodb/bin/mongod --dbpath=/Users/jeromeortega/mongodb-data"
+    "start_db": "~/mongodb/bin/mongod --dbpath=/Users/jeromeortega/mongodb-data",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "@sendgrid/mail": "^6.3.1",
     "bcryptjs": "^2.4.3",
     "express": "^4.16.4",
+    "jest": "^24.7.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.2.2",
     "mongoose": "^5.4.21",
