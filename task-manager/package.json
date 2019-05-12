@@ -6,9 +6,12 @@
     "start": "node src/index.js",
     "dev": "env-cmd ./config/dev.env nodemon src/index.js",
     "start_db": "~/mongodb/bin/mongod --dbpath=/Users/jeromeortega/mongodb-data",
-    "test": "jest"
+    "test": "env-cmd ./config/test.env jest --watch"
   },
-  "author": "",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "author": "Jerome Ortega",
   "license": "ISC",
   "keywords": [],
   "description": "",
